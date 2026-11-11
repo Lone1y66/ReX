@@ -1,0 +1,23 @@
+
+name: ReX iOS Build Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Download ReX source
+        uses: actions/checkout@v4
+
+      - name: Check macOS and Xcode
+        run: |
+          sw_vers
+          xcodebuild -version
+
+      - name: Inspect ReX iOS project
+        run: |
+          ls -la rx-ios/app
+          find rx-ios/app -maxdepth 2 -type f
