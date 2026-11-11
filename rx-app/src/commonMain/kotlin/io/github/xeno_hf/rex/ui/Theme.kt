@@ -81,18 +81,28 @@ val Topaz = RxPalette(
     traces = listOf(Color(0xFF0E9F7E), Color(0xFF2F6FDB), Color(0xFFC98A00), Color(0xFFB03CC4), Color(0xFFD7263D), Color(0xFF5C9A0C)),
 )
 
+
 val Emerald = RxPalette(
     id = "emerald", light = false,
-    bg = Color(0xFF0A0C0D), bg2 = Color(0xFF0D1614),
+    bg = Color(0xFF0A0C0D), bg2 = Color(0xFF0D161A),
     card = Color(0xFF131A19), cardHi = Color(0xFF1A2624),
     line = Color(0xFF283A37), track = Color(0xFF1D2B28),
     text = Color(0xFFF3F7F6), muted = Color(0xFF8CA59F),
-    brand = Color(0xFF22D69A), brand2 = Color(0xFF7FE8D0), brandInk = Color(0xFF48EBB5), onBrand = Color(0xFF00241A),
+    brand = Color(0xFF08B7EE), brand2 = Color(0xFF007FB8),
+brandInk = Color(0xFF041F2B), onBrand = Color(0xFF041F2B),
     partner = Color(0xFF4F6BEA),
-    accent = Color(0xFF22D69A),
-    warn = Color(0xFFE9B949), danger = Color(0xFFFF3D55),
-    traces = listOf(Color(0xFF22D69A), Color(0xFF6E8BFF), Color(0xFFE9B949), Color(0xFFE879F9), Color(0xFFFF6B6B), Color(0xFFA3E635)),
+    accent = Color(0xFF08B7EE),
+    warn = Color(0xFFEF9B49), danger = Color(0xFFFF3D55),
+    traces = listOf(
+        Color(0xFF08B7EE),
+        Color(0xFF66D9FF),
+        Color(0xFFEF9B49),
+        Color(0xFF8E379F),
+        Color(0xFFFF6B6B),
+        Color(0xFFA3E635)
+    ),
 )
+
 
 /** 目前配色。讀取會訂閱 Compose 狀態，換主題時全部畫面自動重繪。 */
 object RxColors {
