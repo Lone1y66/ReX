@@ -40,7 +40,7 @@ class WriteGate(private val deviceType: Int, initialRefusals: Long = 0) {
                         b0 and 0x03 != 0x03 || f.dlc != 8 -> "only expedited writes allowed"
                         addr == Rpc.MON_ADDR && sub == Rpc.MON_SUB -> null
                         addr == Rpc.CHAN_TABLE_ADDR -> null
-                        // 儀表運行期控制（W0'，2026-10-20）：**只有儀表上的功能**，就算登入也不開放其他校正。
+                        // 儀表運行期控制：**只有儀表上的功能**，就算登入也不開放其他校正。
                         sub == 0 && (4 - ((b0 ushr 2) and 3)) == 1 && addr == Rpc.MAP_SWITCH -> if (u(4) in 1..3) null else "MAP must be 1-3"
                         // EB 是位元欄位，閘門無法驗前值；只讀改寫 bit0 的紀律由 Session.setDash 保證，這裡只放行物件與寬度。
                         sub == 0 && (4 - ((b0 ushr 2) and 3)) == 1 && addr == DashFn.EB.index -> null

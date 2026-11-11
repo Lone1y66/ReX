@@ -67,7 +67,7 @@ class History(val capacity: Int = 1200) {
 
 sealed interface Target {
     data class Ecu(val host: String) : Target
-    /** 體驗模式：拿一份騎乘紀錄餵離線重播。[log]＝null 用 App 內建的那份。 */
+    /** 體驗模式：離線重播使用者提供的騎乘紀錄。 */
     data class Demo(val log: Path? = null) : Target
 }
 
@@ -113,7 +113,7 @@ class Repo(val platform: Platform) {
     private var idleJob: Job? = null
     private var seq = 0L
 
-    /** App 內建的體驗用紀錄（建置時放進 assets/demo/demo.loga；公開版沒有）。 */
+    /** 預留的體驗紀錄來源；本版不附範例紀錄。 */
     val hasBuiltinDemo: Boolean by lazy { runCatching { platform.builtinDemoLoga() != null }.getOrDefault(false) }
 
     /** 使用者匯入的騎乘紀錄（從 XTune 分享或選檔），體驗模式用。 */
@@ -220,7 +220,7 @@ class Repo(val platform: Platform) {
         get() = prefs.getInt("dashPage", 0)
         set(v) = prefs.putInt("dashPage", v)
 
-    /** 監控儀表的磚（預設＝XTune 監控儀表在出廠頻道表下的 44 格，2026-10-14 截圖抄錄）。 */
+    /** 監控儀表的預設通道格。 */
     val monitorTiles = MutableStateFlow(intList("monitor", DEFAULT_MONITOR))
     fun setMonitorTiles(v: List<Int>) { monitorTiles.value = v; prefs.putString("monitor", v.joinToString(",")) }
 
@@ -250,8 +250,8 @@ class Repo(val platform: Platform) {
         prefs.putInt("mfb.${"AB"[i]}", id)
     }
 
-    // ---- 儀表運行期控制（2026-10-20）----
-    // 設計（使用者 2026-10-20）：就算有密碼，ReX 也只能改儀表上的功能（MAP／AT／Pit／LC／TC／EB）；
+    // ---- 儀表運行期控制 ----
+    // 就算有密碼，ReX 也只能改儀表上的功能（MAP／AT／Pit／LC／TC／EB）；
     // 沒登入時 MAP／Pit／LC 能切，其他顯示「功能限制」；AT 要再確認一次才開。
     private val NO_LOGIN_FUNS = setOf(DashFn.PIT, DashFn.LC)
 

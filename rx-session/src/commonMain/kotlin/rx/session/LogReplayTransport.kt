@@ -208,7 +208,7 @@ class LogReplayTransport(
         while (pos < 64) { val k = minOf(6, 64 - pos); emit(Frame(reply, byteArrayOf(0x3B, n.toByte()) + block.copyOfRange(pos, pos + k))); pos += k; n++ }
     }
 
-    /** 重播 2026-10-16 ISS 停車時的卡死：RPC／登入全不回（心跳照常）。 */
+    /** 重播 RPC／登入無回應、但心跳持續的情境。 */
     @Volatile var rpcSilent = false
 
     private fun onFrame(f: Frame) {
