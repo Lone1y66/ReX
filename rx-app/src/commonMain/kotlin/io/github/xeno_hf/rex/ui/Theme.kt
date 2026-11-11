@@ -89,6 +89,7 @@ val Emerald = RxPalette(
     line = Color(0xFF283A37), track = Color(0xFF1D2B28),
     text = Color(0xFFF3F7F6), muted = Color(0xFF8CA59F),
     brand = Color(0xFF08B7EE),
+    brand2 = Color(0xFF007FBB),
 brandInk = Color(0xFF041F2B), onBrand = Color(0xFF041F2B),
     partner = Color(0xFF4F6BEA),
     accent = Color(0xFF08B7EE),
